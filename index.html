@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="LiMed.css">
+
+</head>
+
+<body>
+    <div id="cabecalho">
+        <table border="0" width="900px" align="center">
+            <tr>
+                <td>
+                    <img src="data/LogoCadeceu.png" id="logoMed">
+                </td>
+
+
+                <td align="right">
+                    <a href="">Home</a> |
+                    <a href="Informações.html">Serviços</a> |
+                    <a href="Agenda Médica.html">Agendamento</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <div id="corpo">
+        <table border="0px" width="900px" align="center">
+            <tr>
+                <td>
+                    <h2>Aqui nós contamos com varias especialidades como: </h2>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <ul>
+                        <li>
+                            Ginecologia
+                        </li>
+
+                        <li>
+                            Neurologia
+                        </li>
+
+                        <li>
+                            Psicologia
+                        </li>
+                    </ul>
+
+                </td>
+            </tr>
+
+            <br>
+
+            <tr>
+                <td colspan="2">
+                    <img src="data/imagemQuadrinho.jpeg" id="imgQuadrinho">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h2>Teste covid-19: </h2>
+                </td>
+
+                <td rowspan="2">
+                    <img src="data/ImagemCovid.png" id="covidImg">
+                </td>
+            </tr>
+
+            <div id="questCovid">
+                <tr>
+                    <td>
+                        <p>Sentiu nos ultimos 15 dias Febre ?</p>
+                        <input type="checkbox" class="check" id="checkCovid1" name="quest" value="Febre">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Sentiu nos ultimos 15 dias Tosse ?</p>
+                        <input type="checkbox" class="check" id="checkCovid2" name="quest" value="tosse">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Sentiu nos ultimos 15 dias Dor na garganta ?</p>
+                        <input type="checkbox" class="check" id="checkCovid3" name="quest" value="dor na garganta">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Sentiu nos ultimos 15 dias Dificuldade em respirar ?</p>
+                        <input type="checkbox" class="check" id="checkCovid4" name="quest" value="respiração" >
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Sentiu nos ultimos 15 dias Coriza ?</p>
+                        <input type="checkbox" class="check" id="checkCovid5" name="quest" value="Coriza">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="button"  onclick="confereValor()" class="btn" id="btnQuest" value="Enviar" >
+                    </td>
+                </tr>
+            </div>
+        </table>
+    </div>
+
+    <script>
+        var resultado = [];
+        var aux = "sim";
+        var contador = 0;
+
+        function pegaValor() {
+            if(checkCovid1.checked == true){            
+                resultado.push(aux);
+            }
+
+            if(checkCovid2.checked == true){                
+                resultado.push(aux);
+            }
+
+            if(checkCovid3.checked == true){
+                resultado.push(aux);
+            }
+
+            if(checkCovid4.checked == true){
+                resultado.push(aux);
+            }
+
+            if(checkCovid5.checked == true){          
+                resultado.push(aux);
+            }
+            checkCovid1.checked = false;
+            checkCovid2.checked = false;
+            checkCovid3.checked = false;
+            checkCovid4.checked = false;
+            checkCovid5.checked = false;
+        }
+
+        function confereValor(){
+            pegaValor();
+            for(var i = 0; i < resultado.length; i++){
+                if(resultado[i] == "sim"){
+                    contador ++;
+                }
+            }
+            if(contador >= 2){
+                alert("é recomendado que faça um teste de covid antes de marcar qualuqer consulta");
+            }else{
+                alert("As chances de você ter covd são baixas mas se os sintomas pesistirem, recomendamos que seja feito um teste de covid");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

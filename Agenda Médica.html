@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento Médico</title>
+    <link rel="stylesheet" href="LiMed.css">
+
+</head>
+
+<body>
+    <div id="cabecalho">
+        <table border="0" width="900px" align="center">
+            <tr>
+                <td>
+                    <img src="data/LogoCadeceu.png" id="logoMed">
+                </td>
+
+
+                <td align="right">
+                    <a href="index.html">Home</a>|
+                    <a href="Informações.html">Serviços</a> |
+                    <a href="">Agendamento</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table border="0px" width="900px" align="center">
+            <form id="contatoForm" method="post" action="mailto:filip3.tarc10@gmail.com">
+                <div id="informacoes">
+                    <tr>
+                        <td>
+                            <label>
+                                <h4>Nome:</h4>
+                            </label>
+                            <input type="text" id="nome">
+                        </td>
+
+                        <td rowspan="5" align="right">
+                            <img src="data/imagemFormulario.png" id="imgForms">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>
+                                <h4>Data de Nascimento:</h4>
+                            </label>
+                            <input type="text" id="dataNascimento">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <h4>Telefone:</h4>
+                            </label>
+                            <input type="tel" id="telefone">
+                        </td>
+                    </tr>
+                </div>
+
+                <tr>
+                    <td>
+                        <div id="escolhaMed">
+                            <h4>ESCOLHA UM MÉDICO:</h4>
+
+                            <select id="medicos">
+                                <option value="DRA. CAROL DANVERS-GINECOLOGIA">DRA. CAROL DANVERS-GINECOLOGIA</option>
+                                <option value="DR. BRUCE WAYNE-PSIQUIATRA">DR. BRUCE WAYNE-PSIQUIATRIA</option>
+                                <option value="DR. TONY STARKS-NEUROLOGISTA">DR. TONY STARKS-NEUROLOGIA</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div id="markConsulta">
+                            <label>
+                                <h4>Escolha a Data e Hora da sua Consulta</h4>
+                            </label>
+                            <input type="datetime-local" id="dataConsulta">
+
+                            <div>
+
+                                <button type="button" onclick="salvar()" class="btn" id="btnSalvar">Salvar</button>
+                                <button type="button" onclick="exibir()" class="btn" id="btnExibir">Visualizar</button>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </div>
+
+
+
+
+
+
+    <script>
+
+        agendamentos = [];
+
+        salvar = function () {
+            var nome = document.getElementById("nome");
+            var dataNascimento = document.getElementById("dataNascimento");
+            var telefone = document.getElementById("telefone");
+            var dataHora = document.getElementById("dataConsulta");
+            var medicos = document.getElementById("medicos");
+
+
+            var existe = false;
+            var i = 0; // contador de agendamentos
+            while (agendamentos.length > i) {
+
+                var dataHoraInicial = new Date(agendamentos[i].dataHora);
+
+                var dataHoraFinal = new Date(agendamentos[i].dataHora);
+                dataHoraFinal.setMinutes(dataHoraFinal.getMinutes() + 29);
+
+                var dataHoraDesejada = new Date(dataHora.value);
+
+                if (dataHoraDesejada >= dataHoraInicial && dataHoraDesejada <= dataHoraFinal && agendamentos[i].medicos == medicos.value) {
+
+                    existe = true;
+                }
+
+                i++;
+            }
+
+            if (existe) {
+
+                alert("Horário não disponível");
+
+            } else {
+
+                agendamento = { nome: nome.value, dataNascimento: dataNascimento.value, telefone: telefone.value, dataHora: dataHora.value, medicos: medicos.value };
+
+                agendamentos.push(agendamento);
+
+                alert(agendamento.nome + " Seu cadastro foi realizado com sucesso ");
+
+
+            }
+
+
+        }
+
+        exibir = function () {
+
+
+            for (let i = 0; i < agendamentos.length; i++) {
+
+
+                alert(" Olá " + agendamentos[i].nome + " Sua consulta com o " + agendamentos[i].medicos + " está agendada para o dia " + agendamentos[i].dataHora);
+                console.log(" Olá " + agendamentos[i].nome + " Sua consulta com o " + agendamentos[i].medicos + " está agendada para o dia " + agendamentos[i].dataHora);
+
+            }
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
